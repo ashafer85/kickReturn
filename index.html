@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title> kick Return </title>
+  </head>
+  <body>
+
+      <style>
+      * { padding: 0; margin-top: 0; }
+      canvas { background: #44d203; display: block; margin: 20 auto; }
+      </style>
+      <script>
+        document.addEventListener('DOMContentLoaded', () => {
+
+          var krCanvas = document.getElementById('kr-canvas');
+          var ctx = krCanvas.getContext('2d');
+          let krX = krCanvas.width/2;
+          let krY = krCanvas.height - 200;
+          let krRadius = 30;
+
+          let krDirStart = 0;
+          let krDirEnd = krDirStart + Math.PI;
+          let krDirVector = krDirStart - Math.PI/2;
+          let krDelta = 24;
+          let krJukeMultiple = 2;
+          let krDeltaY;
+          let krDeltaX;
+
+
+
+
+          ctx.beginPath();
+          ctx.arc(krX, krY, krRadius, krDirStart, krDirEnd, false);
+          ctx.fillStyle = "#068653";
+          ctx.fill();
+          ctx.closePath();
+          ctx.beginPath();
+          ctx.arc(krX, krY, krRadius, krDirStart, krDirEnd, true);
+          ctx.fillStyle = "white";
+          ctx.fill();
+          ctx.closePath();
+
+
+          document.addEventListener('keydown', (e) => {
+            console.log(e.keyCode)
+            switch(e.keyCode) {
+              case(38):
+                if (Math.sin(krDirVector) >= 0) {
+                  krDeltaY = Math.floor(krDelta*Math.sin(krDirVector));
+                } else {
+                  krDeltaY = Math.ceil(krDelta*Math.sin(krDirVector));
+                }
+                if (Math.cos(krDirVector) >= 0) {
+                  krDeltaX = Math.floor(krDelta*Math.cos(krDirVector));
+                } else {
+                  krDeltaX = Math.ceil(krDelta*Math.cos(krDirVector));
+                }
+                krY += krDeltaY;
+                krX += krDeltaX;
+                ctx.clearRect(0, 0, krCanvas.width, krCanvas.height);
+                ctx.beginPath();
+                ctx.arc(krX, krY, krRadius, krDirStart, krDirEnd, false);
+                ctx.fillStyle = "#068653";
+                ctx.fill();
+                ctx.closePath();
+                ctx.beginPath();
+                ctx.arc(krX, krY, krRadius, krDirStart, krDirEnd, true);
+                ctx.fillStyle = "white";
+                ctx.fill();
+                ctx.closePath();
+                break;
+              case(40):
+                if (Math.sin(krDirVector) >= 0) {
+                  krDeltaY = Math.floor(krDelta*Math.sin(krDirVector));
+                } else {
+                  krDeltaY = Math.ceil(krDelta*Math.sin(krDirVector));
+                }
+                if (Math.cos(krDirVector) >= 0) {
+                  krDeltaX = Math.floor(krDelta*Math.cos(krDirVector));
+                } else {
+                  krDeltaX = Math.ceil(krDelta*Math.cos(krDirVector));
+                }
+                krY -= krDeltaY;
+                krX -= krDeltaX;
+                ctx.clearRect(0, 0, krCanvas.width, krCanvas.height);
+                ctx.beginPath();
+                ctx.arc(krX, krY, krRadius, krDirStart, krDirEnd, false);
+                ctx.fillStyle = "#068653";
+                ctx.fill();
+                ctx.closePath();
+                ctx.beginPath();
+                ctx.arc(krX, krY, krRadius, krDirStart, krDirEnd, true);
+                ctx.fillStyle = "white";
+                ctx.fill();
+                ctx.closePath();
+                break;
+              case(39):
+                // krX += deltaKRX;
+                krDirStart += Math.PI/4;
+                krDirEnd = krDirStart + Math.PI;
+                krDirVector = krDirStart - Math.PI/2;
+                ctx.clearRect(0, 0, krCanvas.width, krCanvas.height);
+                ctx.beginPath();
+                ctx.arc(krX, krY, krRadius, krDirStart, krDirEnd, false);
+                ctx.fillStyle = "#068653";
+                ctx.fill();
+                ctx.closePath();
+                ctx.beginPath();
+                ctx.arc(krX, krY, krRadius, krDirStart, krDirEnd, true);
+                ctx.fillStyle = "white";
+                ctx.fill();
+                ctx.closePath();
+                break;
+              case(37):
+                // krX -= deltaKRX;
+                krDirStart -= Math.PI/4;
+                krDirEnd = krDirStart + Math.PI;
+                krDirVector = krDirStart - Math.PI/2;
+                ctx.clearRect(0, 0, krCanvas.width, krCanvas.height);
+                ctx.beginPath();
+                ctx.arc(krX, krY, krRadius, krDirStart, krDirEnd, false);
+                ctx.fillStyle = "#068653";
+                ctx.fill();
+                ctx.closePath();
+                ctx.beginPath();
+                ctx.arc(krX, krY, krRadius, krDirStart, krDirEnd, true);
+                ctx.fillStyle = "white";
+                ctx.fill();
+                ctx.closePath();
+                break;
+              case(83):
+                if (Math.sin(krDirVector) >= 0) {
+                  krDeltaY = Math.floor(krJukeMultiple*krDelta*Math.sin(krDirEnd));
+                } else {
+                  krDeltaY = Math.ceil(krJukeMultiple*krDelta*Math.sin(krDirEnd));
+                }
+                if (Math.cos(krDirVector) >= 0) {
+                  krDeltaX = Math.floor(krJukeMultiple*krDelta*Math.cos(krDirEnd));
+                } else {
+                  krDeltaX = Math.ceil(krJukeMultiple*krDelta*Math.cos(krDirEnd));
+                }
+                krY += krDeltaY;
+                krX += krDeltaX;
+                ctx.clearRect(0, 0, krCanvas.width, krCanvas.height);
+                ctx.beginPath();
+                ctx.arc(krX, krY, krRadius, krDirStart, krDirEnd, false);
+                ctx.fillStyle = "#068653";
+                ctx.fill();
+                ctx.closePath();
+                ctx.beginPath();
+                ctx.arc(krX, krY, krRadius, krDirStart, krDirEnd, true);
+                ctx.fillStyle = "white";
+                ctx.fill();
+                ctx.closePath();
+                break;
+              case(68):
+                if (Math.sin(krDirVector) >= 0) {
+                  krDeltaY = Math.floor(krJukeMultiple*krDelta*Math.sin(krDirStart));
+                } else {
+                  krDeltaY = Math.ceil(krJukeMultiple*krDelta*Math.sin(krDirStart));
+                }
+                if (Math.cos(krDirVector) >= 0) {
+                  krDeltaX = Math.floor(krJukeMultiple*krDelta*Math.cos(krDirStart));
+                } else {
+                  krDeltaX = Math.ceil(krJukeMultiple*krDelta*Math.cos(krDirStart));
+                }
+                krY += krDeltaY;
+                krX += krDeltaX;
+                ctx.clearRect(0, 0, krCanvas.width, krCanvas.height);
+                ctx.beginPath();
+                ctx.arc(krX, krY, krRadius, krDirStart, krDirEnd, false);
+                ctx.fillStyle = "#068653";
+                ctx.fill();
+                ctx.closePath();
+                ctx.beginPath();
+                ctx.arc(krX, krY, krRadius, krDirStart, krDirEnd, true);
+                ctx.fillStyle = "white";
+                ctx.fill();
+                ctx.closePath();
+                break;
+            };
+          });
+        });
+
+          //
+          // function render() {
+          //   ctx.clearRect(0, 0, krCanvas.width, krCanvas.height);
+          //
+          //   ctx.beginPath();
+          //   ctx.arc(krX, krY, krRadius, 0, Math.PI, false);
+          //   ctx.fillStyle = "#068653";
+          //   ctx.fill();
+          //   ctx.closePath();
+          //   ctx.beginPath();
+          //   ctx.arc(krX, krY, krRadius, Math.PI, Math.PI*2, false);
+          //   ctx.fillStyle = "white";
+          //   ctx.fill();
+          //   ctx.closePath();
+          //   ctx.beginPath();
+          //   ctx.arc(krX, krY, 120, Math.PI, Math.PI*2, false);
+          //   ctx.strokeStyle = "rgba(6, 134, 83, 1)";
+          //   ctx.stroke();
+          //   ctx.closePath();
+          //   ctx.beginPath();
+          //   ctx.arc(krX, krY, 220, Math.PI, Math.PI*2, false);
+          //   ctx.strokeStyle = "rgba(6, 134, 83, 1)";
+          //   ctx.stroke();
+          //   ctx.closePath();
+          //
+          //   ctx.beginPath();
+          //   ctx.arc(285, 160, krRadius, 0, Math.PI, false);
+          //   ctx.fillStyle = '#144498';
+          //   ctx.fill();
+          //   ctx.closePath();
+          //   ctx.beginPath();
+          //   ctx.arc(285, 160, krRadius, Math.PI, Math.PI*2, false )
+          //   ctx.fillStyle = '#ffcb05';
+          //   ctx.fill();
+          //   ctx.closePath();
+          //
+          //   krX += deltaKRX;
+          //   krY += deltaKRY;
+          // }
+          // render()
+          // setInterval(render, 200)
+      </script>
+
+      <canvas id='kr-canvas' width=600 height=400></canvas>
+  </body>
+</html>
