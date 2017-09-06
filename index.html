@@ -15,10 +15,10 @@
 
           var krCanvas = document.getElementById('kr-canvas');
           var ctx = krCanvas.getContext('2d');
-          let krX = krCanvas.width/2;
-          let krY = krCanvas.height - 200;
-          let krRadius = 30;
 
+          let krX = krCanvas.width/2;
+          let krY = krCanvas.height - 100;
+          let krRadius = 16;
           let krDirStart = 0;
           let krDirEnd = krDirStart + Math.PI;
           let krDirVector = krDirStart - Math.PI/2;
@@ -26,206 +26,171 @@
           let krJukeMultiple = 2;
           let krDeltaY;
           let krDeltaX;
+          let krColorB = "#068653";
+          let krColorT = "white";
 
+          let spreadX;
+          let spreadY;
 
+          let defX = Math.floor(krCanvas.width*Math.random());
+          let defY = krCanvas.height - (krCanvas.height - 80);
+          let defRadius = krRadius;
+          let defDirStart = 0;
+          let defDirEnd = defDirStart + Math.PI;
+          let defDirVector = defDirStart - Math.PI/2;
+          let defDelta = 20;
+          let defDeltaY;
+          let defDeltaX;
+          let defColorB = "#ffcb05";
+          let defColorT = "#144498";
+          let pastDef = false;
 
+          const renderKR = () => {
+            ctx.beginPath();
+            ctx.arc(krX, krY, krRadius, krDirStart, krDirEnd, false);
+            ctx.fillStyle = krColorB;
+            ctx.fill();
+            ctx.closePath();
+            ctx.beginPath();
+            ctx.arc(krX, krY, krRadius, krDirStart, krDirEnd, true);
+            ctx.fillStyle = krColorT;
+            ctx.fill();
+            ctx.closePath();
+          }
 
-          ctx.beginPath();
-          ctx.arc(krX, krY, krRadius, krDirStart, krDirEnd, false);
-          ctx.fillStyle = "#068653";
-          ctx.fill();
-          ctx.closePath();
-          ctx.beginPath();
-          ctx.arc(krX, krY, krRadius, krDirStart, krDirEnd, true);
-          ctx.fillStyle = "white";
-          ctx.fill();
-          ctx.closePath();
+          const trigKR = (ref, bool = true) => {
+            if (Math.sin(krDirVector) >= 0) {
+              krDeltaY = Math.floor(krDelta*Math.sin(ref));
+            } else {
+              krDeltaY = Math.ceil(krDelta*Math.sin(ref));
+            }
+            if (Math.cos(krDirVector) >= 0) {
+              krDeltaX = Math.floor(krDelta*Math.cos(ref));
+            } else {
+              krDeltaX = Math.ceil(krDelta*Math.cos(ref));
+            }
+            if (bool === true) {
+              krY += krDeltaY;
+              krX += krDeltaX;
+            } else {
+              krY -= krDeltaY;
+              krX -= krDeltaX;
+            }
+          }
 
+          const trigDef = () => {
+            spreadX = defX - krX;
+            spreadY = defY - krY;
+            if (krY < defY) {
+              defDirVector = Math.PI/2 - Math.atan(spreadX/spreadY);
+              defDirStart = defDirVector + Math.PI/2;
+              defDirEnd = defDirStart - Math.PI;
+            } else {
+              defDirVector = Math.PI/2 - Math.atan(spreadX/spreadY);
+              defDirStart = defDirVector - Math.PI/2;
+              defDirEnd = defDirStart + Math.PI;
+            }
+
+            if (Math.sin(defDirVector) >= 0) {
+              defDeltaY = Math.floor(defDelta*Math.sin(defDirVector));
+            } else {
+              defDeltaY = Math.ceil(defDelta*Math.sin(defDirVector));
+            }
+            if (Math.cos(defDirVector) >= 0) {
+              defDeltaX = Math.floor(defDelta*Math.cos(defDirVector));
+            } else {
+              defDeltaX = Math.ceil(defDelta*Math.cos(defDirVector));
+            }
+            if (krY < defY) {
+              defY -= defDeltaY;
+              defX -= defDeltaX;
+            } else {
+              defY += defDeltaY;
+              defX += defDeltaX;
+            }
+          }
+          const renderDef = () => {
+            ctx.beginPath();
+            ctx.arc(defX, defY, defRadius, defDirStart, defDirEnd, pastDef);
+            ctx.fillStyle = defColorB;
+            ctx.fill();
+            ctx.closePath();
+            ctx.beginPath();
+            ctx.arc(defX, defY, defRadius, defDirStart, defDirEnd, !pastDef);
+            ctx.fillStyle = defColorT;
+            ctx.fill();
+            ctx.closePath();
+          }
+
+          const clearField = () => {
+            ctx.clearRect(0, 0, krCanvas.width, krCanvas.height);
+          }
+          renderKR();
+          renderDef();
 
           document.addEventListener('keydown', (e) => {
             console.log(e.keyCode)
             switch(e.keyCode) {
               case(38):
-                if (Math.sin(krDirVector) >= 0) {
-                  krDeltaY = Math.floor(krDelta*Math.sin(krDirVector));
-                } else {
-                  krDeltaY = Math.ceil(krDelta*Math.sin(krDirVector));
-                }
-                if (Math.cos(krDirVector) >= 0) {
-                  krDeltaX = Math.floor(krDelta*Math.cos(krDirVector));
-                } else {
-                  krDeltaX = Math.ceil(krDelta*Math.cos(krDirVector));
-                }
-                krY += krDeltaY;
-                krX += krDeltaX;
-                ctx.clearRect(0, 0, krCanvas.width, krCanvas.height);
-                ctx.beginPath();
-                ctx.arc(krX, krY, krRadius, krDirStart, krDirEnd, false);
-                ctx.fillStyle = "#068653";
-                ctx.fill();
-                ctx.closePath();
-                ctx.beginPath();
-                ctx.arc(krX, krY, krRadius, krDirStart, krDirEnd, true);
-                ctx.fillStyle = "white";
-                ctx.fill();
-                ctx.closePath();
+                trigKR(krDirVector);
+                clearField()
+                renderKR();
+                trigDef();
+                renderDef();
                 break;
               case(40):
-                if (Math.sin(krDirVector) >= 0) {
-                  krDeltaY = Math.floor(krDelta*Math.sin(krDirVector));
-                } else {
-                  krDeltaY = Math.ceil(krDelta*Math.sin(krDirVector));
-                }
-                if (Math.cos(krDirVector) >= 0) {
-                  krDeltaX = Math.floor(krDelta*Math.cos(krDirVector));
-                } else {
-                  krDeltaX = Math.ceil(krDelta*Math.cos(krDirVector));
-                }
-                krY -= krDeltaY;
-                krX -= krDeltaX;
-                ctx.clearRect(0, 0, krCanvas.width, krCanvas.height);
-                ctx.beginPath();
-                ctx.arc(krX, krY, krRadius, krDirStart, krDirEnd, false);
-                ctx.fillStyle = "#068653";
-                ctx.fill();
-                ctx.closePath();
-                ctx.beginPath();
-                ctx.arc(krX, krY, krRadius, krDirStart, krDirEnd, true);
-                ctx.fillStyle = "white";
-                ctx.fill();
-                ctx.closePath();
+                trigKR(krDirVector, false);
+                clearField();
+                renderKR();
+                trigDef();
+                renderDef();
                 break;
               case(39):
-                // krX += deltaKRX;
                 krDirStart += Math.PI/4;
                 krDirEnd = krDirStart + Math.PI;
                 krDirVector = krDirStart - Math.PI/2;
-                ctx.clearRect(0, 0, krCanvas.width, krCanvas.height);
-                ctx.beginPath();
-                ctx.arc(krX, krY, krRadius, krDirStart, krDirEnd, false);
-                ctx.fillStyle = "#068653";
-                ctx.fill();
-                ctx.closePath();
-                ctx.beginPath();
-                ctx.arc(krX, krY, krRadius, krDirStart, krDirEnd, true);
-                ctx.fillStyle = "white";
-                ctx.fill();
-                ctx.closePath();
+                clearField();
+                renderKR();
+                renderDef();
                 break;
               case(37):
-                // krX -= deltaKRX;
                 krDirStart -= Math.PI/4;
                 krDirEnd = krDirStart + Math.PI;
                 krDirVector = krDirStart - Math.PI/2;
-                ctx.clearRect(0, 0, krCanvas.width, krCanvas.height);
-                ctx.beginPath();
-                ctx.arc(krX, krY, krRadius, krDirStart, krDirEnd, false);
-                ctx.fillStyle = "#068653";
-                ctx.fill();
-                ctx.closePath();
-                ctx.beginPath();
-                ctx.arc(krX, krY, krRadius, krDirStart, krDirEnd, true);
-                ctx.fillStyle = "white";
-                ctx.fill();
-                ctx.closePath();
+                clearField();
+                renderKR();
+                renderDef();
                 break;
               case(83):
-                if (Math.sin(krDirVector) >= 0) {
-                  krDeltaY = Math.floor(krJukeMultiple*krDelta*Math.sin(krDirEnd));
-                } else {
-                  krDeltaY = Math.ceil(krJukeMultiple*krDelta*Math.sin(krDirEnd));
-                }
-                if (Math.cos(krDirVector) >= 0) {
-                  krDeltaX = Math.floor(krJukeMultiple*krDelta*Math.cos(krDirEnd));
-                } else {
-                  krDeltaX = Math.ceil(krJukeMultiple*krDelta*Math.cos(krDirEnd));
-                }
-                krY += krDeltaY;
-                krX += krDeltaX;
-                ctx.clearRect(0, 0, krCanvas.width, krCanvas.height);
-                ctx.beginPath();
-                ctx.arc(krX, krY, krRadius, krDirStart, krDirEnd, false);
-                ctx.fillStyle = "#068653";
-                ctx.fill();
-                ctx.closePath();
-                ctx.beginPath();
-                ctx.arc(krX, krY, krRadius, krDirStart, krDirEnd, true);
-                ctx.fillStyle = "white";
-                ctx.fill();
-                ctx.closePath();
+                trigKR(krDirEnd);
+                clearField();
+                renderKR();
+                trigDef();
+                renderDef();
                 break;
               case(68):
-                if (Math.sin(krDirVector) >= 0) {
-                  krDeltaY = Math.floor(krJukeMultiple*krDelta*Math.sin(krDirStart));
-                } else {
-                  krDeltaY = Math.ceil(krJukeMultiple*krDelta*Math.sin(krDirStart));
-                }
-                if (Math.cos(krDirVector) >= 0) {
-                  krDeltaX = Math.floor(krJukeMultiple*krDelta*Math.cos(krDirStart));
-                } else {
-                  krDeltaX = Math.ceil(krJukeMultiple*krDelta*Math.cos(krDirStart));
-                }
-                krY += krDeltaY;
-                krX += krDeltaX;
-                ctx.clearRect(0, 0, krCanvas.width, krCanvas.height);
-                ctx.beginPath();
-                ctx.arc(krX, krY, krRadius, krDirStart, krDirEnd, false);
-                ctx.fillStyle = "#068653";
-                ctx.fill();
-                ctx.closePath();
-                ctx.beginPath();
-                ctx.arc(krX, krY, krRadius, krDirStart, krDirEnd, true);
-                ctx.fillStyle = "white";
-                ctx.fill();
-                ctx.closePath();
+                trigKR(krDirStart);
+                clearField();
+                renderKR();
+                trigDef();
+                renderDef();
                 break;
             };
           });
         });
-
-          //
-          // function render() {
-          //   ctx.clearRect(0, 0, krCanvas.width, krCanvas.height);
-          //
-          //   ctx.beginPath();
-          //   ctx.arc(krX, krY, krRadius, 0, Math.PI, false);
-          //   ctx.fillStyle = "#068653";
-          //   ctx.fill();
-          //   ctx.closePath();
-          //   ctx.beginPath();
-          //   ctx.arc(krX, krY, krRadius, Math.PI, Math.PI*2, false);
-          //   ctx.fillStyle = "white";
-          //   ctx.fill();
-          //   ctx.closePath();
-          //   ctx.beginPath();
-          //   ctx.arc(krX, krY, 120, Math.PI, Math.PI*2, false);
-          //   ctx.strokeStyle = "rgba(6, 134, 83, 1)";
-          //   ctx.stroke();
-          //   ctx.closePath();
-          //   ctx.beginPath();
-          //   ctx.arc(krX, krY, 220, Math.PI, Math.PI*2, false);
-          //   ctx.strokeStyle = "rgba(6, 134, 83, 1)";
-          //   ctx.stroke();
-          //   ctx.closePath();
-          //
-          //   ctx.beginPath();
-          //   ctx.arc(285, 160, krRadius, 0, Math.PI, false);
-          //   ctx.fillStyle = '#144498';
-          //   ctx.fill();
-          //   ctx.closePath();
-          //   ctx.beginPath();
-          //   ctx.arc(285, 160, krRadius, Math.PI, Math.PI*2, false )
-          //   ctx.fillStyle = '#ffcb05';
-          //   ctx.fill();
-          //   ctx.closePath();
-          //
-          //   krX += deltaKRX;
-          //   krY += deltaKRY;
-          // }
-          // render()
-          // setInterval(render, 200)
       </script>
-
+      <h1> Kick Return </h1>
       <canvas id='kr-canvas' width=600 height=400></canvas>
+      <div class='instructions-container'>
+        <h3> Controls: </h3>
+        <ul class='movements'>
+          <li> 'Up' Arrow: Forward  </li>
+          <li> 'Down' Arrow: Backward  </li>
+          <li> 'Left' Arrow: Turn Left  </li>
+          <li> 'Right' Arrow: Turn Right  </li>
+          <li> 'S' Key: Step Left  </li>
+          <li> 'D' Key: Step Right  </li>
+        </ul>
+      </div>
   </body>
 </html>
