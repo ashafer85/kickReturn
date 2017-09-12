@@ -2,9 +2,7 @@
 <html>
   <head>
       <meta charset="utf-8" />
-      <link href="vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
       <link href="https://fonts.googleapis.com/css?family=Audiowide|Black+Ops+One|Graduate|Share+Tech+Mono|VT323" rel="stylesheet">
-      <link rel="stylesheet" type="text/css" href="reset.css">
       <link rel="stylesheet" type="text/css" href="game.css">
       <title> kick Return </title>
   </head>
@@ -13,27 +11,41 @@
           * { padding: 0; margin-top: 0; }
           canvas { background: #44d203; display: block; margin: 20 auto; }
       </style>
+      <script src="https://use.fontawesome.com/865b42ed31.js"></script>
       <script src='lib/bundle.js'></script>
 
       <div class='game-header'>
           <h1> Kick Return </h1>
-          <div>
-                <h3> Made by Andrew Shafer <h3>
+          <div class='personal'>
+                <h3> Made by Andrew Shafer </h3>
                 <ul class= 'personal-links'>
                   <li class='personal-item'>
-                    <a href="https://github.com/ashafer85">
-                      <i class="fa fa-github fa-fw fa-3x"></i>
+                    <a class='linkOption'
+                      href="https://github.com/ashafer85/kickReturn">
+                      <i class="fa fa-github fa-fw fa-2x"></i>
                     </a>
+                    <div class='pl-sub'> Github Repo </div>
                   </li>
                   <li class='personal-item'>
-                    <a href="https://www.linkedin.com/in/andrew-shafer-75509890/">
-                      <i class="fa fa-linkedin-square fa-fw fa-3x"></i>
+                    <a class='linkOption'
+                      href="https://www.linkedin.com/in/andrew-shafer-75509890/">
+                      <i class="fa fa-linkedin-square fa-fw fa-2x"></i>
                     </a>
+                    <div class='pl-sub'> LinkedIn </div>
                   </li>
                   <li class='personal-item'>
-                    <a href="#">
-                      <i class="fa fa-file-pdf-o fa-fw fa-2x">Resume</i>
+                    <a class='linkOption'
+                      href="https://ashafer85.github.io/andrewshaferdev/">
+                      <i class="fa fa-briefcase fa-fw fa-2x" aria-hidden="true"></i>
                     </a>
+                    <div class='pl-sub'> Portfolio </div>
+                  </li>
+                  <li class='personal-item'>
+                    <a class='linkOption'
+                      href="#">
+                      <i class="fa fa-file-pdf-o fa-fw fa-2x"></i>
+                    </a>
+                    <div class='pl-sub'> Resume (dead now) </div>
                   </li>
                 </ul>
           </div>
@@ -44,7 +56,10 @@
       <div class='instructions-container'>
           <h3> Controls: </h3>
           <ul class='movements'>
-              <li> 'Up' Arrow: Forward  </li>
+              <li>
+                <i class="fa fa-arrow-up" aria-hidden="true"></i>
+                Forward
+              </li>
               <li> 'Down' Arrow: Backward  </li>
               <li> 'Left' Arrow: Turn Left  </li>
               <li> 'Right' Arrow: Turn Right  </li>
@@ -54,5 +69,4 @@
       </div>
 
   </body>
-  <style src='./game.css'></style>
 </html>
