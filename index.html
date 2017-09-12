@@ -1,27 +1,58 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <meta charset="utf-8" />
-    <title> kick Return </title>
+      <meta charset="utf-8" />
+      <link href="vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+      <link href="https://fonts.googleapis.com/css?family=Audiowide|Black+Ops+One|Graduate|Share+Tech+Mono|VT323" rel="stylesheet">
+      <link rel="stylesheet" type="text/css" href="reset.css">
+      <link rel="stylesheet" type="text/css" href="game.css">
+      <title> kick Return </title>
   </head>
   <body class='stadium'>
       <style>
-      * { padding: 0; margin-top: 0; }
-      canvas { background: #44d203; display: block; margin: 20 auto; }
+          * { padding: 0; margin-top: 0; }
+          canvas { background: #44d203; display: block; margin: 20 auto; }
       </style>
       <script src='lib/bundle.js'></script>
-      <h1> Kick Return </h1>
-      <canvas id='kr-canvas' width=600 height=400></canvas>
-      <div class='instructions-container'>
-        <h3> Controls: </h3>
-        <ul class='movements'>
-          <li> 'Up' Arrow: Forward  </li>
-          <li> 'Down' Arrow: Backward  </li>
-          <li> 'Left' Arrow: Turn Left  </li>
-          <li> 'Right' Arrow: Turn Right  </li>
-          <li> 'S' Key: Step Left  </li>
-          <li> 'D' Key: Step Right  </li>
-        </ul>
+
+      <div class='game-header'>
+          <h1> Kick Return </h1>
+          <div>
+                <h3> Made by Andrew Shafer <h3>
+                <ul class= 'personal-links'>
+                  <li class='personal-item'>
+                    <a href="https://github.com/ashafer85">
+                      <i class="fa fa-github fa-fw fa-3x"></i>
+                    </a>
+                  </li>
+                  <li class='personal-item'>
+                    <a href="https://www.linkedin.com/in/andrew-shafer-75509890/">
+                      <i class="fa fa-linkedin-square fa-fw fa-3x"></i>
+                    </a>
+                  </li>
+                  <li class='personal-item'>
+                    <a href="#">
+                      <i class="fa fa-file-pdf-o fa-fw fa-2x">Resume</i>
+                    </a>
+                  </li>
+                </ul>
+          </div>
       </div>
+
+      <canvas id='kr-canvas' width=600 height=400></canvas>
+
+      <div class='instructions-container'>
+          <h3> Controls: </h3>
+          <ul class='movements'>
+              <li> 'Up' Arrow: Forward  </li>
+              <li> 'Down' Arrow: Backward  </li>
+              <li> 'Left' Arrow: Turn Left  </li>
+              <li> 'Right' Arrow: Turn Right  </li>
+              <li> 'S' Key: Step Left  </li>
+              <li> 'D' Key: Step Right  </li>
+          </ul>
+      </div>
+
   </body>
+  <style src='./game.css'></style>
 </html>
