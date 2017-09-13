@@ -1,4 +1,5 @@
 
+
 body {
   height: 100%;
   width: 99%;
@@ -50,9 +51,34 @@ body {
   text-align: center;
 }
 
+a {
+  color: white;
+}
+
+a:link {
+  font-size: 10px;
+  text-decoration: none;
+}
+
 .linkOption {
-  color: 'white';
-  background-color: 'black';
+  padding-bottom: 3px;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.fa {
+  padding-top: 3px;
+  color: #068653;
+  font-style: none;
+}
+
+.linkOption:hover {
+  background-color: #e3be6e;
+  border-radius: 4px;
+  padding-bottom: 3px;
 }
 
 .pl-sub {
@@ -61,11 +87,9 @@ body {
 }
 
 .instructions-container {
-  margin: 10px 0px;
+  margin: 5px 0px;
   width: 600px;
   background-color: rgba(0, 0, 0, 0.8);
-  /*color: #ffcb05;*/
-  color: #068653;
   color: white;
   display: flex;
   flex-direction: column;
@@ -80,8 +104,12 @@ body {
 }
 
 .specifics-container {
-  /*width: 45%;*/
   padding: 5px 10px;
+}
+
+.arrows {
+  padding-left: 35px;
+  border-left: 1px dotted white;
 }
 
 .instructions-title {
@@ -90,6 +118,7 @@ body {
   border-bottom: 1px solid #068653;
 }
 .specific-instructions {
+  font-size: 14px;
   display: flex;
   flex-direction: row;
   justify-content: center;
@@ -99,7 +128,11 @@ body {
 .key {
   padding: 10px;
   margin: 5px;
-  border-radius: 4px;
   background-color: #068653;
-
+  border: 2px groove #068653;
+  border-radius: 4px;
+}
+.spacebar {
+  padding-left: 22px;
+  padding-right: 22px;
 }
