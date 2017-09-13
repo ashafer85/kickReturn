@@ -19,53 +19,73 @@
           <div class='personal'>
                 <h3> Made by Andrew Shafer </h3>
                 <ul class= 'personal-links'>
-                  <li class='personal-item'>
-                    <a class='linkOption'
-                      href="https://github.com/ashafer85/kickReturn">
-                      <i class="fa fa-github fa-fw fa-2x"></i>
-                    </a>
-                    <div class='pl-sub'> Github Repo </div>
-                  </li>
-                  <li class='personal-item'>
-                    <a class='linkOption'
-                      href="https://www.linkedin.com/in/andrew-shafer-75509890/">
-                      <i class="fa fa-linkedin-square fa-fw fa-2x"></i>
-                    </a>
-                    <div class='pl-sub'> LinkedIn </div>
-                  </li>
-                  <li class='personal-item'>
-                    <a class='linkOption'
-                      href="https://ashafer85.github.io/andrewshaferdev/">
-                      <i class="fa fa-briefcase fa-fw fa-2x" aria-hidden="true"></i>
-                    </a>
-                    <div class='pl-sub'> Portfolio </div>
-                  </li>
-                  <li class='personal-item'>
-                    <a class='linkOption'
-                      href="#">
-                      <i class="fa fa-file-pdf-o fa-fw fa-2x"></i>
-                    </a>
-                    <div class='pl-sub'> Resume (dead now) </div>
-                  </li>
+                    <li class='personal-item'>
+                      <a class='linkOption'
+                        href="https://ashafer85.github.io/andrewshaferdev/">
+                        <i class="fa fa-briefcase fa-2x" aria-hidden="true"></i>
+                        Portfolio
+                      </a>
+                      <div class='pl-sub'>  </div>
+                    </li>
+                    <li class='personal-item'>
+                      <a class='linkOption'
+                        href="https://github.com/ashafer85/kickReturn">
+                        <i class="fa fa-github fa-2x"></i>
+                        Github
+                      </a>
+                      <div class='pl-sub'>  </div>
+                    </li>
+                    <li class='personal-item'>
+                      <a class='linkOption'
+                        href="https://www.linkedin.com/in/andrew-shafer-75509890/">
+                        <i class="fa fa-linkedin-square fa-2x"></i>
+                        LinkedIn
+                      </a>
+                      <div class='pl-sub'>  </div>
+                    </li>
+                    <li class='personal-item'>
+                      <a class='linkOption'
+                        href="#">
+                        <i class="fa fa-file-pdf-o fa-2x"></i>
+                        Resume
+                      </a>
+                      <div class='pl-sub'>  </div>
+                    </li>
                 </ul>
           </div>
       </div>
 
       <canvas id='kr-canvas' width=600 height=400></canvas>
 
-      <div class='instructions-container'>
-          <h3> Controls: </h3>
-          <ul class='movements'>
-              <li>
-                <i class="fa fa-arrow-up" aria-hidden="true"></i>
-                Forward
-              </li>
-              <li> 'Down' Arrow: Backward  </li>
-              <li> 'Left' Arrow: Turn Left  </li>
-              <li> 'Right' Arrow: Turn Right  </li>
-              <li> 'S' Key: Step Left  </li>
-              <li> 'D' Key: Step Right  </li>
-          </ul>
+      <div class='instructions-container'> <!-- column -->
+          <!-- <h3> Controls: </h3> -->
+          <div class='instructions'> <!-- row w:100%-->
+              <div class='specifics-container'> <!-- column w:45%-->
+                  <div class='instructions-title'> KEYBOARD: </div>
+                  <div class='specific-instructions'> <!-- row -->
+                    <div class='key'> SPACE BAR </div>
+                    restart game
+                  </div>
+                  <div class='specific-instructions'> <!-- row -->
+                    step left
+                    <div class='key'> S </div>
+                    <div class='key'> D </div>
+                    step right
+                  </div>
+              </div>
+              <div class='specifics-container'> <!-- column w: 45%-->
+                  <div class='instructions-title'> ARROW KEYS: </div>
+                  <div class='specific-instructions'> <!-- row -->
+                    <div class='key'> FORWARD </div>
+                  </div>
+                  <div class='specific-instructions'> <!-- row -->
+                    <div class='key'> TURN L </div>
+                    <div class='key'> BACKWARD </div>
+                    <div class='key'> TURN R </div>
+                  </div>
+              </div>
+          </div>
+
       </div>
 
   </body>
