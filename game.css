@@ -25,6 +25,9 @@ body {
   justify-content: space-between;
   align-items: center;
 }
+.made-by {
+  margin-bottom: 10px;
+}
 
 .personal {
   display: flex;
