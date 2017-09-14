@@ -3,9 +3,13 @@
 body {
   height: 100%;
   width: 99%;
+
   background-image: url('./img/stadiumUM.jpg');
-  background-position: center center;
   background-size: cover;
+  /*background-image: url('./img/stadiumMSU.jpg');*/
+  /*background-size: 160%;*/
+
+  background-position: center;
   display: flex;
   flex-direction: column;
   justify-content: center;
