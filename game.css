@@ -2,18 +2,43 @@
 
 body {
   height: 100%;
-  width: 99%;
+  /*min-height: 960px;*/
+  width: 100%;
 
-  background-image: url('./img/stadiumPRINCETON.jpg');
+  background-image: url('./img/stadiumMSU.jpg');
   background-size: cover;
   /*background-image: url('./img/stadiumMSU.jpg');*/
   /*background-size: 160%;*/
 
+  /*background-color: #41b866;*/
+  background-position: center center;
+
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  font-family: 'Graduate';
+
+}
+
+.lexicon {
+  padding: 20px 4px 4px 20px;
+  font-size: 20px;
+  color: #afb7c3;
+  /*font-family: 'Cedarville Cursive', cursive;*/
+
+}
+
+.stadium {
+  height: 100%;
+  width: 50%;
+  min-width: 620px;
+  margin-top: 12px;
+
   background-position: center;
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  align-items: center;
+  justify-content: flex-start;
+  align-items:  center;
   font-family: 'Graduate', cursive;
 }
 
