@@ -5,9 +5,9 @@ body {
   /*min-height: 960px;*/
   width: 100%;
 
+  /*background-image: url('./img/stadiumPRINCETON.jpg');*/
   background-image: url('./img/stadiumMSU.jpg');
   background-size: cover;
-  /*background-image: url('./img/stadiumMSU.jpg');*/
   /*background-size: 160%;*/
 
   /*background-color: #41b866;*/
